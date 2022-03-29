@@ -2,6 +2,8 @@ import { Card } from 'react-bootstrap';
 
 import { Post as PostShape, PostType } from 'types/feed';
 
+import { PostAuthor } from 'components/post/PostAuthor';
+
 const PostMessage = ({ content }: Pick<PostShape, 'content'>) => {
   if (typeof content === 'string') {
     return (
@@ -56,14 +58,18 @@ export const Post = ({
   author,
   title,
   content,
-  type
+  type,
+  posted
 }: PostShape) => {
   return (
-    <Card>
+    <Card className="c-post">
       <Card.Body>
         <PostTitle type={type} title={title} author={author} />
         <PostMessage content={content} />
       </Card.Body>
+      <Card.Footer>
+        <PostAuthor author={author} posted={posted}/>
+      </Card.Footer>
     </Card>
   );
 };
