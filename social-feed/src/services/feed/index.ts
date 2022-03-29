@@ -38,7 +38,6 @@ function createPost(): Post {
         id: faker.datatype.uuid(),
         content: {
           message: [
-            { message: `${faker.internet.userName()} commented` },
             { message: `Great insight! we should look into this further.` },
             { message: `on Customer Experience ${faker.address.country()} ${faker.date.past(10).getUTCFullYear()}` }
           ]

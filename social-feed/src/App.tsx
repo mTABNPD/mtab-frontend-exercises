@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 
+import { Feed } from 'components/feed';
 import { useAppDispatch, useAppSelector } from 'hooks/store';
 import { getPosts } from 'reducers/feed/actions';
 import { selectPosts } from 'reducers/feed/reducer';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './App.scss';
 
@@ -24,9 +25,7 @@ function App() {
       </header>
       <section>
         <div className="App-content">
-          <pre>
-            {JSON.stringify(posts, undefined, 2)}
-          </pre>
+          <Feed posts={posts} title="Recent Activity" />
         </div>
       </section>
     </div>
