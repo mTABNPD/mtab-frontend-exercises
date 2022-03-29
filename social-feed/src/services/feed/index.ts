@@ -8,8 +8,8 @@ export const getPosts = deferredResponse<() => Post[]>(() => new Array(10)
   .fill(0)
   .map(createPost));
 
-export const likePost = deferredResponse<(postId: string) => boolean>((postId) => true, 50);
-export const followAuthor = deferredResponse<(authorId: string) => boolean>((authorId) => true, 50);
+export const likePost = deferredResponse<(postId: string) => string>((postId) => postId, 50);
+export const followAuthor = deferredResponse<(authorId: string) => string>((authorId) => authorId, 50);
 
 function deferredResponse<T extends (...args: any) => any>(
   responseCreator: T,
