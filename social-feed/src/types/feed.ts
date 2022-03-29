@@ -18,6 +18,7 @@ export interface Post {
   content: PostMessage;
   author: PostAuthor;
   posted: string;
+  isLiked?: boolean;
 }
 
 export type SimplePostMessage = string;

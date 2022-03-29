@@ -9,11 +9,13 @@ import './Feed.scss';
 export interface FeedProps {
   title: ReactNode;
   posts: Post[];
+  onPostLike: (postId: string) => void;
 }
 
 export const Feed = ({
   posts,
-  title
+  title,
+  onPostLike
 }: FeedProps) => {
   return (
     <Container className="c-feed">
@@ -21,11 +23,10 @@ export const Feed = ({
         <Col className="c-feed__title">
           <h3>{title}</h3>
         </Col>
-        <Col className="c-feed__controls">Controls</Col>
       </Row>
       <Row className="c-feed__content">
         {posts.map((post) => (
-          <PostComponent {...post}/>
+          <PostComponent key={post.id} {...post} onLike={onPostLike}/>
         ))}
       </Row>
     </Container>

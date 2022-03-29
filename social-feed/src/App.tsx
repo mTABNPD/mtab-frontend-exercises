@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 
 import { Feed } from 'components/feed';
 import { useAppDispatch, useAppSelector } from 'hooks/store';
-import { getPosts } from 'reducers/feed/actions';
+import { getPosts, likePost } from 'reducers/feed/actions';
 import { selectPosts } from 'reducers/feed/reducer';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './App.scss';
@@ -25,7 +26,11 @@ function App() {
       </header>
       <section>
         <div className="App-content">
-          <Feed posts={posts} title="Recent Activity" />
+          <Feed
+            posts={posts}
+            title="Recent Activity"
+            onPostLike={(postId) => dispatch(likePost(postId))}
+          />
         </div>
       </section>
     </div>

@@ -3,7 +3,7 @@ import { createSlice, createSelector, PayloadAction, Draft } from '@reduxjs/tool
 import { RootState } from 'store';
 import { Post } from 'types/feed';
 
-import { getPosts } from './actions';
+import { getPosts, likePost } from './actions';
 
 type PostsState = {
   posts: Post[],
@@ -35,6 +35,24 @@ export const feedSlice = createSlice({
     builder.addCase(
       getPosts.fulfilled,
       updatePosts);
+
+    builder.addCase(
+      likePost.fulfilled,
+      (state, { payload }: PayloadAction<string>) => {
+        const posts = state.posts.map((p) => {
+          if (p.id === payload) {
+            return {
+              ...p,
+              isLiked: true
+            }
+          }
+          return p;
+        });
+        return {
+          ...state,
+          posts
+        };
+    })
   }
 });
 

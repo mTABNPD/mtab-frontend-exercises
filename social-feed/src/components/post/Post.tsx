@@ -2,7 +2,10 @@ import { Card } from 'react-bootstrap';
 
 import { Post as PostShape, PostType } from 'types/feed';
 
-import { PostAuthor } from 'components/post/PostAuthor';
+import { PostAuthor } from './PostAuthor';
+import { PostLikeButton } from './PostLikeButton';
+
+import './Post.scss';
 
 const PostMessage = ({ content }: Pick<PostShape, 'content'>) => {
   if (typeof content === 'string') {
@@ -16,8 +19,8 @@ const PostMessage = ({ content }: Pick<PostShape, 'content'>) => {
   if (Array.isArray(message)) {
     return (
       <>
-        {message.map((m) => (
-          <PostMessage content={m}/>
+        {message.map((m, i) => (
+          <PostMessage key={i} content={m}/>
         ))}
       </>
     );
@@ -55,20 +58,24 @@ const PostTitle = ({ title, type, author }: Pick<PostShape, 'author' | 'title' |
 
 
 export const Post = ({
+  id,
   author,
   title,
   content,
   type,
-  posted
-}: PostShape) => {
+  posted,
+  isLiked,
+  onLike
+}: PostShape & { onLike: (postId: string) => void }) => {
   return (
     <Card className="c-post">
+      <PostLikeButton onClick={() => onLike(id)} isLiked={isLiked} />
       <Card.Body>
         <PostTitle type={type} title={title} author={author} />
         <PostMessage content={content} />
       </Card.Body>
       <Card.Footer>
-        <PostAuthor author={author} posted={posted}/>
+        <PostAuthor author={author} posted={posted} type={type}/>
       </Card.Footer>
     </Card>
   );
