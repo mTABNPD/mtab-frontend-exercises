@@ -6,7 +6,7 @@ const RESPONSE_TIMEOUT = 1000;
 
 export const getPosts = deferredResponse<Post[]>(() => new Array(10)
   .fill(0)
-  .map(createPost))
+  .map(createPost));
 
 function deferredResponse<T>(
   responseCreator: () => T
@@ -56,7 +56,7 @@ function createPost(): Post {
     case PostType.INFORMATION: {
       return {
         id: faker.datatype.uuid(),
-        content: createReactionContent(author),
+        content: createInformationContent(author),
         author,
         posted: faker.date.recent(20, Date.now()).toISOString(),
         type
@@ -71,4 +71,15 @@ function createReactionContent(author: PostAuthor) {
   const resource = faker.random.arrayElement(['post', 'dataset', 'content', 'insight']);
 
   return `${author.displayName} liked ${faker.internet.userName()}'s ${resource}`
+}
+
+function createInformationContent(author: PostAuthor) {
+  const resource = `Dataset ${faker.commerce.productName()} Study ${faker.date.future(5).getUTCFullYear()}`;
+
+  return {
+    message: [
+      { message: `${author.displayName} has made`},
+      { message: `${resource} available to you` }
+    ]
+  }
 }
