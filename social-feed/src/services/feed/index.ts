@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { Post, PostType } from 'types/feed';
+import { Post, PostAuthor, PostType } from 'types/feed';
 
 const RESPONSE_TIMEOUT = 1000;
 
@@ -21,14 +21,24 @@ function deferredResponse<T>(
 }
 
 function createPost(): Post {
-  const author = faker.internet.userName();
   const type = faker.random.arrayElement(Object.values(PostType));
+  const author = {
+    displayName: faker.internet.userName(),
+    email: faker.internet.email(),
+    avatar: faker.internet.avatar()
+  };
 
   switch(type) {
     case PostType.COMMENT: {
       return {
         id: faker.datatype.uuid(),
-        content: createReactionContent(author),
+        content: {
+          message: [
+            { message: `${faker.internet.userName()} commented` },
+            { message: `Great insight! we should look into this further.` },
+            { message: `on Customer Experience ${faker.address.country()} ${faker.date.past(10).getUTCFullYear()}` }
+          ]
+        },
         author,
         posted: faker.date.recent(20, Date.now()).toISOString(),
         type
@@ -57,8 +67,8 @@ function createPost(): Post {
   }
 }
 
-function createReactionContent(author: string) {
+function createReactionContent(author: PostAuthor) {
   const resource = faker.random.arrayElement(['post', 'dataset', 'content', 'insight']);
 
-  return `${author} liked ${faker.internet.userName()}'s ${resource}`
+  return `${author.displayName} liked ${faker.internet.userName()}'s ${resource}`
 }

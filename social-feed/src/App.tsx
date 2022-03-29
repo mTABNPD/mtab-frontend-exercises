@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Example Platform Application</h1>
+        <h1>Social Feed 🥳</h1>
       </header>
       <section>
         <div className="App-content">

@@ -5,17 +5,23 @@ export enum PostType {
   INFORMATION = 'INFORMATION'
 }
 
+export interface PostAuthor {
+  displayName: string;
+  email: string;
+  avatar: string;
+}
+
 export interface Post {
   id: string;
   type: PostType
   title?: string;
   content: PostMessage;
-  author: string;
+  author: PostAuthor;
   posted: string;
 }
 
 export type SimplePostMessage = string;
 export type ComplexPostMessage = {
-  message: ComplexPostMessage[];
+  message: (PostMessage | ComplexPostMessage[]);
 };
 export type PostMessage = SimplePostMessage | ComplexPostMessage;
