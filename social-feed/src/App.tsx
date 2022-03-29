@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'hooks/store';
 import { getPosts } from 'reducers/feed/actions';
