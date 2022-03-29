@@ -1,11 +1,11 @@
 import { AnyAction, configureStore, Selector, ThunkAction } from '@reduxjs/toolkit';
 
-import postsReducer, { name as postsReducerName } from 'reducers/posts';
+import feedReducer, { name as feedReducerName } from 'reducers/feed/reducer';
 
 export function createStore() {
   return configureStore({
     reducer: {
-      [postsReducerName]: postsReducer
+      [feedReducerName]: feedReducer
     }
   });
 }

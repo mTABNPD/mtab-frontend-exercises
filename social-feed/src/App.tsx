@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import { getPosts } from 'services/feed';
-import { Post } from 'types/feed';
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { getPosts } from 'reducers/feed/actions';
+import { selectPosts } from 'reducers/feed/reducer';
 
 import './index.css';
 import './App.scss';
 
+
 function App() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector(selectPosts);
 
   useEffect(() => {
-    getPosts()
-      .then(setPosts);
-  }, []);
+    dispatch(getPosts());
+  }, [dispatch]);
 
 
   return (
@@ -23,7 +25,7 @@ function App() {
       <section>
         <div className="App-content">
           <pre>
-            {JSON.stringify(posts, null, 2)}
+            {JSON.stringify(posts, undefined, 2)}
           </pre>
         </div>
       </section>
