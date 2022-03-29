@@ -6,6 +6,9 @@
 - Typescript support
 - Services for fetching data
 - Common libraries
+  - react
+  - react-redux + redux toolkit
+  - react-bootstrap
 
 ## Objectives
 To display social feed data & to provide limited interaction with the social feed
