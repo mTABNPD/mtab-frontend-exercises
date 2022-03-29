@@ -14,8 +14,8 @@ export const followAuthor = deferredResponse<(authorId: string) => boolean>((aut
 function deferredResponse<T extends (...args: any) => any>(
   responseCreator: T,
   timeout = RESPONSE_TIMEOUT
-): () => Promise<ReturnType<T>> {
-  return (...args: Parameters<T>) => {
+): (...args: Parameters<T>) => Promise<ReturnType<T>> {
+  return (...args) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(responseCreator(...args));
