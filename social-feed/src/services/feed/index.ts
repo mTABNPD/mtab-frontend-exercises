@@ -4,18 +4,22 @@ import { Post, PostAuthor, PostType } from 'types/feed';
 
 const RESPONSE_TIMEOUT = 1000;
 
-export const getPosts = deferredResponse<Post[]>(() => new Array(10)
+export const getPosts = deferredResponse<() => Post[]>(() => new Array(10)
   .fill(0)
   .map(createPost));
 
-function deferredResponse<T>(
-  responseCreator: () => T
-): () => Promise<T> {
-  return () => {
+export const likePost = deferredResponse<(postId: string) => boolean>((postId) => true, 50);
+export const followAuthor = deferredResponse<(authorId: string) => boolean>((authorId) => true, 50);
+
+function deferredResponse<T extends (...args: any) => any>(
+  responseCreator: T,
+  timeout = RESPONSE_TIMEOUT
+): () => Promise<ReturnType<T>> {
+  return (...args: Parameters<T>) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(responseCreator());
-      }, RESPONSE_TIMEOUT);
+        resolve(responseCreator(...args));
+      }, timeout);
     });
   }
 }
