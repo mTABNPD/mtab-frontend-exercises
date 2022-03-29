@@ -11,11 +11,23 @@
   - react-bootstrap
 
 ## Objectives
-To display social feed data & to provide limited interaction with the social feed
+To display social feed data & to provide limited interaction with the social feed.
 
-To consider:
-- State management
-- Component layout
+Below are merely ideas that can be followed when developing
+
+- A styled list of Posts:
+  - display first 10 posts
+  - ability to sort, by author or date (asc + desc)
+
+- Post should include:
+  - content
+  - author display name
+  - formatted timestamp
+
+- Some interactivity with each post
+  - like button
+  - Author profile card (on hover)
+  - Follow author button
 
 # Getting Started with Create React App
 
