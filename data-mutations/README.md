@@ -1,4 +1,4 @@
-# Social Feed Scenario
+# Data mutations
 
 ## Provided
 - A basic app structure
