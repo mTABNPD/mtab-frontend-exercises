@@ -1,4 +1,4 @@
-import { AnyAction, ThunkAction } from '@reduxjs/toolkit';
+import { UnknownAction, ThunkAction } from '@reduxjs/toolkit';
 
 import { createStore } from './createStore';
 
@@ -12,7 +12,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
-  AnyAction
+  UnknownAction
 >;
 export type ThunkAPIConfig = {
   state: RootState;
