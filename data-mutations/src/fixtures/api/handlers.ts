@@ -1,33 +1,23 @@
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import { createUserProfile } from 'fixtures/user';
+import { UserProfile } from 'types/user.ts';
 
 let profile = createUserProfile();
 
 // default handlers
 export const handlers = {
-  profile: rest.get('*/api/user/profile', (_, res, ctx) => (
-    res(
-      ctx.status(200),
-      ctx.json(profile)
-    )
+  profile: http.get('*/api/user/profile', () => (
+    HttpResponse.json(profile)
   )),
-  putProfile: rest.put('*/api/user/profile', (
-    req,
-    res,
-    ctx) => {
+  putProfile: http.put<never, UserProfile>('*/api/user/profile', async ({ request }) => {
+    const updates = await request.json();
 
-    return req.json()
-      .then((data) => {
-        profile = {
-          ...profile,
-          ...data
-        }
+    profile = {
+      ...profile,
+      ...updates
+    };
 
-        return res(
-          ctx.status(200),
-          ctx.json(profile)
-        );
-      })
+    return HttpResponse.json(profile);
   })
 };
