@@ -1,11 +1,18 @@
 import { useId } from 'react';
+import { useLoginUserMutation } from 'services/api';
 
 export function Login() {
   const userNameId = useId();
   const passwordId = useId();
+  const [triggerLogin] = useLoginUserMutation();
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        triggerLogin({ email: 'a', password: 'b' })
+      }}
+    >
       <div>
         <label htmlFor={userNameId}>Username:&nbsp;</label>
         <input id={userNameId} />

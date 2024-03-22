@@ -4,5 +4,6 @@ import { handlers } from './handlers';
 
 export const worker = setupWorker(
   handlers.profile,
-  handlers.putProfile
+  handlers.putProfile,
+  handlers.postLogin
 );
