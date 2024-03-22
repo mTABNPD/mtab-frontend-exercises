@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { useLoginUserMutation } from 'services/api';
 
 export function Login() {
-  const userNameId = useId();
+  const emailId = useId();
   const passwordId = useId();
   const [triggerLogin] = useLoginUserMutation();
 
@@ -14,8 +14,8 @@ export function Login() {
       }}
     >
       <div>
-        <label htmlFor={userNameId}>Username:&nbsp;</label>
-        <input id={userNameId} />
+        <label htmlFor={emailId}>Email:&nbsp;</label>
+        <input id={emailId} />
       </div>
       <div>
         <label htmlFor={passwordId}>Password:&nbsp;</label>
