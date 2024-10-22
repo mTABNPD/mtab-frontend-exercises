@@ -17,12 +17,14 @@
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.114",
     "@types/react": "^17.0.83",
     "@types/react-dom": "^17.0.25",
+    "@vitejs/plugin-react": "^4.3.3",
     "eslint": "^8.57.1",
     "sass": "^1.80.3",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vite": "^5.4.9",
+    "vite-tsconfig-paths": "^5.0.1"
   },
   "overrides": {
     "resolve-url-loader": {
@@ -30,10 +32,9 @@
     }
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
