@@ -26,11 +26,6 @@
     "vite": "^5.4.9",
     "vite-tsconfig-paths": "^5.0.1"
   },
-  "overrides": {
-    "resolve-url-loader": {
-      "postcss": "^8.4.35"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
